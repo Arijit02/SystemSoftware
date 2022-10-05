@@ -11,7 +11,7 @@ float findAvg(vector<int> arr)
     return sum / arr.size();
 }
 
-void SJF(vector<int> p, vector<int> bt, vector<int> at)
+void SJF(vector<int> &p, vector<int> &bt, vector<int> &at)
 {
     int n = p.size(), time = INT_MAX;
     vector<int> wt(n, 0), ta(n, 0), ct(n, 0);
