@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-float findAvg(vector<int> arr)
+float findAvg(vector<int> &arr)
 {
     float sum = 0;
     for (auto a : arr)
@@ -9,7 +9,7 @@ float findAvg(vector<int> arr)
     return sum / arr.size();
 }
 
-void RR(vector<int> p, vector<int> bt, vector<int> at, int q)
+void RR(vector<int> &p, vector<int> &bt, vector<int> &at, int &q)
 {
     vector<int> rem_bt = bt;
     int n = p.size(), time = INT_MAX;
