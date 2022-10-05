@@ -3,7 +3,7 @@ using namespace std;
 
 #define mytype pair<int, int>
 
-float findAvg(vector<int> arr)
+float findAvg(const vector<int> &arr)
 {
     float sum = 0;
     for (auto a : arr)
