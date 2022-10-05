@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void isSafe(vector<int> processes, vector<int> available, vector<vector<int>> max_need,
-            vector<vector<int>> allotted)
+void isSafe(vector<int> &processes, vector<int> &available, vector<vector<int>> &max_need,
+            vector<vector<int>> &allotted)
 {
     int res_type = available.size(), proc_no = processes.size();
     vector<int> safe_sequence, finish(proc_no, 0);
