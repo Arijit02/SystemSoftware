@@ -51,14 +51,13 @@ public:
         cout << "Average Turnaround Time = " << findAvgTAT(processList) << endl;
         cout << "Average Waiting Time = " << findAvgWT(processList) << endl;
     }
-};
-class FCFS : public ProcessScheduling
-{
     static bool sortIncreasingArrivalTime(Process &p1, Process &p2)
     {
         return (p1.arrivalTime < p2.arrivalTime);
     }
-
+};
+class FCFS : public ProcessScheduling
+{
 public:
     void run(vector<Process> processList)
     {
