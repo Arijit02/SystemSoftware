@@ -74,14 +74,52 @@ public:
     }
 };
 
+class SJF : public ProcessScheduling
+{
+public:
+    void run(vector<Process> processList)
+    {
+        sort(processList.begin(), processList.end(), sortIncreasingArrivalTime);
+
+        int time = processList[0].arrivalTime;
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> waitingQ;
+
+        waitingQ.push({processList[0].burstTime, 0});
+        while (!waitingQ.empty())
+        {
+            pair<int, int> currProcess = waitingQ.top();
+            waitingQ.pop();
+            processList[currProcess.second].completionTime = time + currProcess.first;
+            time = processList[currProcess.second].completionTime;
+            for (int i = currProcess.second + 1; i < processList.size(); i++)
+            {
+                if (processList[i].arrivalTime <= time && processList[i].arrivalTime > time - currProcess.first)
+                    waitingQ.push({processList[i].burstTime, i});
+                else
+                    break;
+            }
+        }
+        for (auto i = 0; i < processList.size(); i++)
+        {
+            processList[i].turnAroundTime = processList[i].completionTime - processList[i].arrivalTime;
+            processList[i].waitingTime = processList[i].turnAroundTime - processList[i].burstTime;
+        }
+        display(processList);
+    }
+};
 
 int main()
 {
 
-    vector<Process> processList={{1, 0, 5},{2, 3, 9},{3, 6, 6}};
-   
+    vector<Process> processList = {{1, 0, 5}, {2, 3, 9}, {3, 6, 6}};
+
     FCFS f;
     f.run(processList);
-    
+
+    vector<Process> processList2 = {{1, 1, 7}, {2, 2, 5}, {3, 3, 1}, {4, 4, 2}, {5, 5, 8}};
+
+    SJF s;
+    s.run(processList2);
+
     return 0;
 }
