@@ -3,12 +3,13 @@ using namespace std;
 class Process
 {
 public:
-    int pID, arrivalTime, burstTime, completionTime, turnAroundTime, waitingTime;
+    int pID, arrivalTime, burstTime, remBurstTime, completionTime, turnAroundTime, waitingTime;
     Process(int pID, int arrivalTime, int burstTime)
     {
         this->pID = pID;
         this->arrivalTime = arrivalTime;
         this->burstTime = burstTime;
+        this->remBurstTime = burstTime;
         this->completionTime = INT_MIN;
         this->turnAroundTime = INT_MIN;
         this->waitingTime = INT_MIN;
@@ -65,6 +66,7 @@ public:
         int time = 0;
         for (int i = 0; i < processList.size(); i++)
         {
+            processList[i].remBurstTime=0;
             processList[i].completionTime = max(processList[i].arrivalTime, time) + processList[i].burstTime;
             processList[i].turnAroundTime = processList[i].completionTime - processList[i].arrivalTime;
             processList[i].waitingTime = processList[i].turnAroundTime - processList[i].burstTime;
@@ -89,6 +91,8 @@ public:
         {
             pair<int, int> currProcess = waitingQ.top();
             waitingQ.pop();
+
+            processList[currProcess.second].remBurstTime=0;
             processList[currProcess.second].completionTime = time + currProcess.first;
             time = processList[currProcess.second].completionTime;
             for (int i = currProcess.second + 1; i < processList.size(); i++)
