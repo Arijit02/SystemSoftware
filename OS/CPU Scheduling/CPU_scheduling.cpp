@@ -66,7 +66,7 @@ public:
         int time = 0;
         for (int i = 0; i < processList.size(); i++)
         {
-            processList[i].remBurstTime=0;
+            processList[i].remBurstTime = 0;
             processList[i].completionTime = max(processList[i].arrivalTime, time) + processList[i].burstTime;
             processList[i].turnAroundTime = processList[i].completionTime - processList[i].arrivalTime;
             processList[i].waitingTime = processList[i].turnAroundTime - processList[i].burstTime;
@@ -84,7 +84,7 @@ public:
         sort(processList.begin(), processList.end(), sortIncreasingArrivalTime);
 
         int time = processList[0].arrivalTime;
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> waitingQ;//Min heap denoting queue of already arrived processes. Each element of the queue is a pair denoting <burstTime, index of process in processList array>
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> waitingQ; // Min heap denoting queue of already arrived processes. Each element of the queue is a pair denoting <burstTime, index of process in processList array>
 
         waitingQ.push({processList[0].burstTime, 0});
         while (!waitingQ.empty())
@@ -92,7 +92,7 @@ public:
             pair<int, int> currProcess = waitingQ.top();
             waitingQ.pop();
 
-            processList[currProcess.second].remBurstTime=0;
+            processList[currProcess.second].remBurstTime = 0;
             processList[currProcess.second].completionTime = time + currProcess.first;
             time = processList[currProcess.second].completionTime;
             for (int i = currProcess.second + 1; i < processList.size(); i++)
