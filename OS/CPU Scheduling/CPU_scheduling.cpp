@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include<iomanip>
 using namespace std;
 class Process
 {
@@ -39,15 +40,45 @@ class ProcessScheduling
 public:
     void display(const vector<Process> &processList)
     {
-        cout << "Process\tArrival Time\tBurst Time\tCompletion Time\tTurnaround Time\tWaiting Time\n";
+        cout << right
+             << setw(10)
+             << "Process"
+             << right
+             << setw(15)
+             << "Arrival Time"
+             << right
+             << setw(13)
+             << "Burst Time"
+             << right
+             << setw(18)
+             << "Completion Time"
+             << right
+             << setw(18)
+             << "Turnaround Time"
+             << right
+             << setw(15)
+             << "Waiting Time"
+             << endl;
         for (auto i = 0; i < processList.size(); i++)
         {
-            cout << processList[i].pID << "\t";
-            cout << processList[i].arrivalTime << "\t";
-            cout << processList[i].burstTime << "\t";
-            cout << processList[i].completionTime << "\t";
-            cout << processList[i].turnAroundTime << "\t";
-            cout << processList[i].waitingTime << "\n";
+            cout << right
+                 << setw(10)
+                 << processList[i].pID
+                 << right
+                 << setw(15)
+                 << processList[i].arrivalTime
+                 << right
+                 << setw(13)
+                 << processList[i].burstTime
+                 << right
+                 << setw(18)
+                 << processList[i].completionTime
+                 << right
+                 << setw(18)
+                 << processList[i].turnAroundTime
+                 << right
+                 << setw(15)
+                 << processList[i].waitingTime << "\n";
         }
         cout << "Average Turnaround Time = " << findAvgTAT(processList) << endl;
         cout << "Average Waiting Time = " << findAvgWT(processList) << endl;
@@ -165,10 +196,10 @@ int main()
     SJF s;
     s.run(processList2);
 
-    vector<Process> processList2 = {{1, 0, 5}, {2, 1, 4}, {3, 2, 2}, {4, 3, 1}};
+    vector<Process> processList3 = {{1, 0, 5}, {2, 1, 4}, {3, 2, 2}, {4, 3, 1}};
 
     RR r;
-    r.run(processList2, 2);
+    r.run(processList3, 2);
 
     return 0;
 }
