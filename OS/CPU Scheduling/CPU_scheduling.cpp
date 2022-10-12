@@ -82,7 +82,7 @@ public:
         sort(processList.begin(), processList.end(), sortIncreasingArrivalTime);
 
         int time = processList[0].arrivalTime;
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> waitingQ;
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> waitingQ;//Min heap denoting queue of already arrived processes. Each element of the queue is a pair denoting <burstTime, index of process in processList array>
 
         waitingQ.push({processList[0].burstTime, 0});
         while (!waitingQ.empty())
