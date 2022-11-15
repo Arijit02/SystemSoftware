@@ -9,7 +9,7 @@ float findAvg(const vector<int> &arr)
     return sum / arr.size();
 }
 
-void FCFS(vector<int> p, vector<int> bt, vector<int> at)
+void FCFS(vector<int> &p, vector<int> &bt, vector<int> &at)
 {
     int n = p.size(), time = 0;
     vector<int> wt(n, 0), ta(n, 0), ct(n, 0);
